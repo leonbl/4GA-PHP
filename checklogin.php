@@ -3,22 +3,20 @@
     $username = $_POST['username'];
     $password = $_POST['password'];
     $bool = true;
-    print_r($_POST);
-    print("pičkamarička");
     $mojsql = mysqli_connect("localhost", "user", "user", "baza") or die(mysqli_error());
     $res = mysqli_query($mojsql, "select * from users where username='$username'", MYSQLI_USE_RESULT);
-    print_r($res);
-    $exists = mysqli_num_rows($res);
-    print_r($exists);
+    $exists = mysqli_num_fields ($res);
+
     $table_users = "";
     $table_passwd = "";
     if($exists > 0){
         while($row = mysqli_fetch_assoc($res)){
-            $table_users = $row[1];
-            $table_password = $row[2];  
+            $table_users = $row['username'];
+            $table_password = $row['password'];  
         } 
-        if(($username == $table_users)&&($password == $table_passwd)){
+        if(($username == $table_users)&&($password == $table_password)){
             $_SESSION['user'] = $username;
+            print("deluje");
             header("location: home.php");
         }
 
