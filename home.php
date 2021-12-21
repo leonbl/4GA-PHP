@@ -28,9 +28,28 @@
     <tr>
         <th>Id</th>
         <th>Details</th>
+        <th>Post time</th>
+        <th>Edit time</th>
         <th>Edit</th>
         <th>Delete</th>
+        <th>Public post</th>
     </tr>
+    <?php 
+        $mojsql = mysqli_connect("localhost", "user", "user", "baza") or die(mysqli_error($mojsql));
+        $test = mysqli_select_db($mojsql, "baza") or die("Cannot connect to databese..");
+        $res=mysqli_query($mojsql, "select * from list");
+        while($row = mysqli_fetch_array($res)){
+            print "<tr>";
+            print '<td align "center">'.$row['id'] . "</td>"; 
+            print '<td align "center">'.$row['details'] . "</td>"; 
+            print '<td align "center">'.$row['date_posted'] . "-" . $row['time_posted'] . "</td>";
+            print '<td align "center">'.$row['date_edited'] . "-" . $row['time_edited'] . "</td>";  
+            print '<td align "center"><a href="edit.php">edit</a></td>';
+            print '<td align "center"><a href="delete.php">delete</a></td>'; 
+            print '<td align "center">'.$row['public'] . "</td>";
+            print "</tr>";
+        } 
+    ?>
     </table>
 </body>
 </html>
