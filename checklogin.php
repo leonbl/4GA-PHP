@@ -16,7 +16,6 @@
         } 
         if(($username == $table_users)&&($password == $table_password)){
             $_SESSION['user'] = $username;
-            print("deluje");
             header("location: home.php");
         }
 

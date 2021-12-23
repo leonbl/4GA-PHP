@@ -22,7 +22,7 @@
         $username = $_POST['username'];
         $password = $_POST['password']; 
         $bool = true;
-        $mojsql = mysqli_connect("localhost", "user", "user", "baza") or die(mysqli_error());
+        $mojsql = mysqli_connect("localhost", "user", "user", "baza") or die(mysqli_error($mojsql));
         $res = mysqli_query($mojsql, "select * from users", MYSQLI_USE_RESULT);
         //print_r($res); 
         if($res){ 

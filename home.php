@@ -11,7 +11,8 @@
         }
         else{
             header("location: index.php");
-        } 
+        }
+        $user = $_SESSION['user'];
     ?>
 </head>
 <body>
@@ -44,12 +45,20 @@
             print '<td align "center">'.$row['details'] . "</td>"; 
             print '<td align "center">'.$row['date_posted'] . "-" . $row['time_posted'] . "</td>";
             print '<td align "center">'.$row['date_edited'] . "-" . $row['time_edited'] . "</td>";  
-            print '<td align "center"><a href="edit.php">edit</a></td>';
-            print '<td align "center"><a href="delete.php">delete</a></td>'; 
+            print '<td align "center"><a href="edit.php?id='.$row['id'].'">edit</a></td>';
+            print '<td align "center"><a href="#" onclick="myfunction('.$row['id'].')">delete</a></td>'; 
             print '<td align "center">'.$row['public'] . "</td>";
             print "</tr>";
         } 
     ?>
     </table>
+    <script>
+        function myfunction(id){
+            var r=confirm("Are you sure?");
+            if(r==true){
+                window.location.assign("delete.php?id="+id);
+            }
+        }
+    </script>
 </body>
 </html>
